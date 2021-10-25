@@ -6,7 +6,6 @@ import SearchResult from './components/search-result';
 import NotificationBanner from './components/notification-banner';
 import { useEffect, useState } from "react"
 import Container from './components/search-container';
-import Success from './components/success';
 import { emptyIds } from "./utils/empty-imdbids";
 function App() {
   const [movieTitle, setMovieTitle] = useState('');

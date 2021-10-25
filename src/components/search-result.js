@@ -1,23 +1,13 @@
 import style from "./search-result.module.css";
 import BallLoader from "./ball-loader";
-import { useState } from "react";
 import { emptyIds } from "../utils/empty-imdbids";
 
 const SearchResult = ({ searchTerm, omdbResult, onNominateMovie, nominations, isLoading }) => {
-  const [movieLoader, setMovieLoader] = useState(null)
-
   const nominationHandler = (movie) => {
     if (nominations.every(e => !Object.values(emptyIds).includes(e.imdbID))) {
       return
     }
     onNominateMovie(movie);
-    // setMovieLoader(movie.imdbID)
-    // setTimeout(
-    //   () => {
-  
-    //     setMovieLoader(null)
-    //   }, 900
-    // )
   }
 
   const isNominatedCheck = (imdbID) => {
@@ -41,8 +31,7 @@ const SearchResult = ({ searchTerm, omdbResult, onNominateMovie, nominations, is
               </span>
               <button
                 disabled={isNominatedCheck(movie.imdbID)}
-                onClick={() => nominationHandler(movie)}>
-                {movieLoader === movie.imdbID ? <BallLoader /> : 'nominate'}
+                onClick={() => nominationHandler(movie)}>nominate
               </button>
             </li>))
         }

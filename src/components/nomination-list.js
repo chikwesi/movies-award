@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import style from "./nomination-list.module.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
