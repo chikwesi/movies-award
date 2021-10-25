@@ -6,25 +6,10 @@ import SearchResult from './components/search-result';
 import NotificationBanner from './components/notification-banner';
 import { useEffect, useState } from "react"
 import Container from './components/search-container';
-import { emptyIds } from "./utils/empty-imdbids";
+import { EMPTY_NOMINATIONS } from "./utils/empty-imdbids";
 function App() {
   const [movieTitle, setMovieTitle] = useState('');
-  const [nominations, setNominations] = useState([
-    {
-      imdbID: emptyIds.one,
-    },
-    {
-      imdbID: emptyIds.two,
-    },
-    {
-      imdbID: emptyIds.three,
-    }, {
-      imdbID: emptyIds.four,
-    },
-    {
-      imdbID: emptyIds.five,
-    }
-  ])
+  const [nominations, setNominations] = useState(EMPTY_NOMINATIONS)
   const [hasBanner, setHasBanner] = useState(false)
   const [omdbMovies, setOmdbMovies] = useState([])
   const [showNomation, setShowNomation] = useState('')
@@ -64,11 +49,10 @@ function App() {
 
   const handleNomination = (value) => {
     const noms = [...nominations]
-    let nextNullIndex = noms.findIndex(nom => Object.values(emptyIds).includes(nom.imdbID))
+    let nextNullIndex = noms.findIndex(nom => !!EMPTY_NOMINATIONS.find(i => i.imdbID === nom.imdbID))
     noms.splice(nextNullIndex, 1, value)
-    // use previous value of the state
     setNominations(noms)
-    if (noms.every(e => !Object.values(emptyIds).includes(e.imdbID))) {
+    if (noms.every(nom => !EMPTY_NOMINATIONS.find(i => i.imdbID === nom.imdbID))) {
       setHasBanner(true)
     }
   }
@@ -76,7 +60,7 @@ function App() {
   const handleRemoveNomination = (id) => {
     const nominationsCopy = [...nominations];
     const index = nominations.findIndex(nom => nom.imdbID === id)
-    nominationsCopy.splice(index, 1, { imdbID: Object.values(emptyIds)[index] });
+    nominationsCopy.splice(index, 1, EMPTY_NOMINATIONS[index]);
     setNominations(nominationsCopy);
     setHasBanner(false)
   }
@@ -99,7 +83,7 @@ function App() {
         <Container>
           <div className="search__containter">
             <h1>The Award</h1>
-            <p className="nomination__instruction">Search and nominate your best movies for The Shoppies <br />Award 2020</p>
+            <p className="nomination__instruction">Search and nominate your best movies for The Movie <br />Award 2021</p>
             <SearchBar onMovieSearch={setMovieTitle} onLoseFocus={hideSearchResult} />
             {showSearchResult &&
               <SearchResult

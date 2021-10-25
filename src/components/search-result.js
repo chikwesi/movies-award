@@ -1,10 +1,10 @@
 import style from "./search-result.module.css";
 import BallLoader from "./ball-loader";
-import { emptyIds } from "../utils/empty-imdbids";
+import { EMPTY_NOMINATIONS } from "../utils/empty-imdbids";
 
 const SearchResult = ({ searchTerm, omdbResult, onNominateMovie, nominations, isLoading }) => {
   const nominationHandler = (movie) => {
-    if (nominations.every(e => !Object.values(emptyIds).includes(e.imdbID))) {
+    if (nominations.every(nom => !EMPTY_NOMINATIONS.find(i => i.imdbID === nom.imdbID))) {
       return
     }
     onNominateMovie(movie);
@@ -25,7 +25,7 @@ const SearchResult = ({ searchTerm, omdbResult, onNominateMovie, nominations, is
           omdbResult &&
           omdbResult.map((movie, i) => (
             <li key={i}>
-              <img src={movie.Poster !==  'N/A' ? movie.Poster : '/default-poster.jpeg'} alt="movie poster"/>
+              <img src={movie.Poster !== 'N/A' ? movie.Poster : '/default-poster.jpeg'} alt="movie poster" />
               <span>
                 {movie.Title}({movie.Year})
               </span>

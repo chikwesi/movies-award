@@ -26,12 +26,9 @@ const NominationList = ({ nominations, onRemoveNomination, onReorderNomination }
 
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="nominations" direction="horizontal">
-            {
-              (provided) => (
+            {(provided) => (
                 <ul className={style.list} {...provided.droppableProps} ref={provided.innerRef}>
-                  {
-                    nominations &&
-                    nominations.map((movie, index) => {
+                  {nominations && nominations.map((movie, index) => {
                       return <Draggable key={movie?.imdbID} draggableId={movie?.imdbID} index={index}>
                         {
                           (provided) => (
@@ -47,18 +44,12 @@ const NominationList = ({ nominations, onRemoveNomination, onReorderNomination }
                             </li>
                           )
                         }
-
                       </Draggable>
-
-                    }
-
-                    )
+                    })
                   }
                   {provided.placeholder}
                 </ul>
-              )
-            }
-
+              )}
           </Droppable>
         </DragDropContext>
 
