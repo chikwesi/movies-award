@@ -30,7 +30,7 @@ function App() {
   const [showNomation, setShowNomation] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [showSearchResult, setShowSearchResult] = useState(true)
-  const api = 'http://www.omdbapi.com/'
+  const api = 'https://www.omdbapi.com/'
 
   useEffect(() => {
     setShowSearchResult(true)
