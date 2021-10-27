@@ -1,6 +1,6 @@
 import style from "./search-bar.module.css";
 
-const SearchBar = ({ onMovieSearch, onLoseFocus }) => {
+const SearchBar = ({ onMovieSearch}) => {
     return (
         <form className={style.searchForm}>
             <div className={style.search}>
@@ -10,7 +10,6 @@ const SearchBar = ({ onMovieSearch, onLoseFocus }) => {
                     placeholder="Search Movie Title"
                     autoComplete="off"
                     onChange={e => onMovieSearch(e.target.value)}
-                    onBlur={onLoseFocus}
                 />
                 <label className={style.label} htmlFor="search-bar">
                     {/* Movie Title */}

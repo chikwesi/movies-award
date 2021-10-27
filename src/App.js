@@ -65,10 +65,6 @@ function App() {
     setHasBanner(false)
   }
 
-  const hideSearchResult = () => {
-    setTimeout(() => setShowSearchResult(false), 200)
-  }
-
 
 
   return (
@@ -84,7 +80,7 @@ function App() {
           <div className="search__containter">
             <h1>The Award</h1>
             <p className="nomination__instruction">Search and nominate your best movies for The Movie <br />Award 2021</p>
-            <SearchBar onMovieSearch={setMovieTitle} onLoseFocus={hideSearchResult} />
+            <SearchBar onMovieSearch={setMovieTitle}/>
             {showSearchResult &&
               <SearchResult
                 searchTerm={movieTitle}
